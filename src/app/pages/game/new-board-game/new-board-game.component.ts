@@ -1,21 +1,21 @@
 import {Component, OnInit} from '@angular/core';
-import {BoardGame} from "../../common/model/board-game";
+import {BoardGame} from "../../../interfaces/board-game";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {GameService} from "../../services/game.service";
+import {GameService} from "../../../services/game.service";
 import {Location} from "@angular/common";
-import {PublisherService} from "../../services/publisher.service";
-import {CategoryService} from "../../services/category.service";
-import {Publisher} from "../../common/model/publisher";
-import {Category} from "../../common/model/category";
-import {Mechanic} from "../../common/model/mechanic";
-import {MechanicService} from "../../services/mechanic.service";
+import {PublisherService} from "../../../services/publisher.service";
+import {CategoryService} from "../../../services/category.service";
+import {Publisher} from "../../../interfaces/publisher";
+import {Category} from "../../../interfaces/category";
+import {Mechanic} from "../../../interfaces/mechanic";
+import {MechanicService} from "../../../services/mechanic.service";
 import {map, startWith, take, tap} from "rxjs";
-import {DesignerService} from "../../services/designer.service";
-import {Designer} from "../../common/model/designer";
+import {DesignerService} from "../../../services/designer.service";
+import {Designer} from "../../../interfaces/designer";
 import {Router} from "@angular/router";
-import {ConfirmationDialogComponent} from "../../common/confirmation-dialog/confirmation-dialog.component";
+import {ConfirmationDialogComponent} from "../../../components/confirmation-dialog/confirmation-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
-import {ItemComponent} from "../../common/item/item.component";
+import {ItemComponent} from "../../../components/item/item.component";
 
 @Component({
   selector: 'app-new-board-game',

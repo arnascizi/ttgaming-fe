@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {BoardGame} from "../model/board-game";
+import {BoardGame} from "../../interfaces/board-game";
 import {GameService} from "../../services/game.service";
 import {take, tap} from "rxjs";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";

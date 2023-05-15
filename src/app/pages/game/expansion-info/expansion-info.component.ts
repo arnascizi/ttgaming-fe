@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Expansion} from "../../common/model/expansion";
+import {Expansion} from "../../../interfaces/expansion";
 
 @Component({
   selector: 'app-expansion-info',

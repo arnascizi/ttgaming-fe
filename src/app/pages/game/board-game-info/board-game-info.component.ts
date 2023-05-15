@@ -1,12 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GameService} from "../../services/game.service";
+import {GameService} from "../../../services/game.service";
 import {take, tap} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
-import {BoardGame} from "../../common/model/board-game";
-import {ExpansionService} from "../../services/expansion.service";
+import {BoardGame} from "../../../interfaces/board-game";
+import {ExpansionService} from "../../../services/expansion.service";
 import {Location} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
-import {ConfirmationDialogComponent} from "../../common/confirmation-dialog/confirmation-dialog.component";
+import {ConfirmationDialogComponent} from "../../../components/confirmation-dialog/confirmation-dialog.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({

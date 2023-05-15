@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../services/authentication.service";
 import {first} from "rxjs";
-import {AuthBody} from "../../common/model/auth-body";
+import {AuthBody} from "../../interfaces/auth-body";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AlertService} from "../../services/alert.service";
 

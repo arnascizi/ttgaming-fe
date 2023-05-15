@@ -1,4 +1,4 @@
-export enum Endpoint {
+export enum EndpointEnum {
   // games
   GAMES = '/api/games',
   NEW_GAMES = '/api/games/new',

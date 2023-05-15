@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {AuthBody} from "../common/model/auth-body";
+import {AuthBody} from "../interfaces/auth-body";
 import {BehaviorSubject, catchError, map, Observable, retry} from "rxjs";
-import {Endpoint} from "../common/model/endpoint";
-import {ErrorHandlerComponent} from "../common/error-handler/error-handler.component";
-import {UserDetails} from "../common/model/user-details";
+import {EndpointEnum} from "../enums/endpoint.enum";
+import {ErrorHandlerComponent} from "../components/error-handler/error-handler.component";
+import {UserDetails} from "../interfaces/user-details";
 import {Router} from "@angular/router";
-import {User} from "../common/model/user";
+import {User} from "../interfaces/user";
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class AuthenticationService {
   }
 
   login(auth: AuthBody) {
-    return this.httpClient.post<UserDetails>(Endpoint.USER_LOGIN, auth)
+    return this.httpClient.post<UserDetails>(EndpointEnum.USER_LOGIN, auth)
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
@@ -41,11 +41,11 @@ export class AuthenticationService {
     localStorage.removeItem('user');
     this.userSubject.next(null);
     this.router.navigate(['login']);
-    return this.httpClient.post(Endpoint.USER_SIGNOUT, this);
+    return this.httpClient.post(EndpointEnum.USER_SIGNOUT, this);
   }
 
   register(user: User) {
-    return this.httpClient.post(Endpoint.USER_REGISTER, user);
+    return this.httpClient.post(EndpointEnum.USER_REGISTER, user);
   }
 
   // getAll() {

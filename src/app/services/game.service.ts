@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, Observable, retry, throwError} from "rxjs";
-import {BoardGamePreview} from "../common/model/board-game-preview";
-import {Endpoint} from "../common/model/endpoint";
-import {ErrorHandlerComponent} from "../common/error-handler/error-handler.component";
-import {BoardGame} from "../common/model/board-game";
-import {Search} from "../common/model/search";
+import {BoardGamePreview} from "../interfaces/board-game-preview";
+import {EndpointEnum} from "../enums/endpoint.enum";
+import {ErrorHandlerComponent} from "../components/error-handler/error-handler.component";
+import {BoardGame} from "../interfaces/board-game";
+import {Search} from "../interfaces/search";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class GameService {
   }
 
   getAllGames(): Observable<BoardGamePreview[]> {
-    return this.httpClient.get<BoardGamePreview[]>(Endpoint.GAMES)
+    return this.httpClient.get<BoardGamePreview[]>(EndpointEnum.GAMES)
       .pipe(
         retry(3),
         catchError(ErrorHandlerComponent.handleError)
@@ -24,7 +24,7 @@ export class GameService {
   }
 
   getGameById(id: number): Observable<BoardGame> {
-    return this.httpClient.get<BoardGame>(Endpoint.GAME + id)
+    return this.httpClient.get<BoardGame>(EndpointEnum.GAME + id)
       .pipe(
         retry(3),
         catchError(ErrorHandlerComponent.handleError)
@@ -33,7 +33,7 @@ export class GameService {
 
   addNewGame(game: BoardGame): Observable<BoardGame> {
     console.log(game);
-    return this.httpClient.post<BoardGame>(Endpoint.NEW_GAMES, game)
+    return this.httpClient.post<BoardGame>(EndpointEnum.NEW_GAMES, game)
       .pipe(
         retry(3),
         catchError(ErrorHandlerComponent.handleError)
@@ -41,7 +41,7 @@ export class GameService {
   }
 
   deleteGame(id: number): Observable<BoardGame> {
-    return this.httpClient.delete<BoardGame>(Endpoint.GAME + id)
+    return this.httpClient.delete<BoardGame>(EndpointEnum.GAME + id)
       .pipe(
         retry(3),
         catchError(ErrorHandlerComponent.handleError)

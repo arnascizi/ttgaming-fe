@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {GameService} from "../../services/game.service";
-import {BoardGamePreview} from "../../common/model/board-game-preview";
+import {GameService} from "../../../services/game.service";
+import {BoardGamePreview} from "../../../interfaces/board-game-preview";
 import {take, tap} from "rxjs";
 import {Router} from "@angular/router";
-import {Search} from "../../common/model/search";
+import {Search} from "../../../interfaces/search";
 
 @Component({
   selector: 'app-board-games',

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {BoardGamePreview} from "../../common/model/board-game-preview";
-import {GameService} from "../../services/game.service";
+import {BoardGamePreview} from "../../../interfaces/board-game-preview";
+import {GameService} from "../../../services/game.service";
 import {take, tap} from "rxjs";
-import {Search} from "../../common/model/search";
+import {Search} from "../../../interfaces/search";
 
 @Component({
   selector: 'app-home',

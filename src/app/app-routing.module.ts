@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {BoardGamesComponent} from "./game/board-games/board-games.component";
-import {BoardGameInfoComponent} from "./game/board-game-info/board-game-info.component";
-import {NewBoardGameComponent} from "./game/new-board-game/new-board-game.component";
-import {HomeComponent} from "./layout/home/home.component";
-import {LoginComponent} from "./auth/login/login.component";
-import {RegisterComponent} from "./auth/register/register.component";
-import {UserMenuComponent} from "./user/user-menu/user-menu.component";
-import {AuthGuard} from "./common/helper/auth.guard";
+import {BoardGamesComponent} from "./pages/game/board-games/board-games.component";
+import {BoardGameInfoComponent} from "./pages/game/board-game-info/board-game-info.component";
+import {NewBoardGameComponent} from "./pages/game/new-board-game/new-board-game.component";
+import {HomeComponent} from "./pages/layout/home/home.component";
+import {LoginComponent} from "./pages/login/login.component";
+import {RegisterComponent} from "./pages/register/register.component";
+import {UserMenuComponent} from "./pages/user/user-menu/user-menu.component";
+import {AuthGuard} from "./shared/helper/auth.guard";
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},

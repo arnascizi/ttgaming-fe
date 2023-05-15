@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {UserDetails} from "../../common/model/user-details";
-import {AuthenticationService} from "../../services/authentication.service";
+import {UserDetails} from "../../../interfaces/user-details";
+import {AuthenticationService} from "../../../services/authentication.service";
 
 @Component({
   selector: 'app-navigation',

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BoardGamePreview} from "../../common/model/board-game-preview";
+import {BoardGamePreview} from "../../../interfaces/board-game-preview";
 
 @Component({
   selector: 'app-board-game-preview',
