@@ -1,0 +1,10 @@
+{
+  "apiUrl": "http://localhost:9090",
+  "localization": {
+    "supportedLanguages": [
+      "lt",
+      "en"
+    ],
+    "defaultLanguage": "lt"
+  }
+}
