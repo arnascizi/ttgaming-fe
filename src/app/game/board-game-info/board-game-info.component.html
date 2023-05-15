@@ -1,0 +1,98 @@
+<div class="f-flex justify-content-center">
+  <mat-card appearance="raised" class="mat-elevation-z2">
+    <div class="row">
+      <div class="col-lg-4">
+        <mat-card-header>
+          <img mat-card-lg-image src="{{game.imgUrl}}" alt="{{game.name}}"/>
+        </mat-card-header>
+      </div>
+      <div class="col-lg-8">
+        <mat-card-content>
+          <div class="container">
+            <div *ngIf="!edit">
+              <mat-card-title>{{game.name}} ({{game.releaseYear}})</mat-card-title>
+            </div>
+            <mat-form-field *ngIf="edit" appearance="outline" class="col-lg-8 me-5">
+              <mat-label>Game title:</mat-label>
+              <input matInput type="text" [(ngModel)]="game.name"/>
+            </mat-form-field>
+            <mat-form-field *ngIf="edit" appearance="outline" class="col-lg-3">
+              <mat-label>Release date:</mat-label>
+              <input matInput type="number" [(ngModel)]="game.releaseYear"/>
+            </mat-form-field>
+            <mat-form-field *ngIf="edit" appearance="outline" class="col-lg-12">
+              <mat-label>Description:</mat-label>
+              <textarea matInput type="textarea" [(ngModel)]="game.description" rows="10"></textarea>
+            </mat-form-field>
+            <div *ngIf="!edit">
+              <p class="card-text py-3">{{game.description}}</p>
+            </div>
+            <mat-card-content>
+              Playing time: {{game.duration}} Min.
+            </mat-card-content>
+            {{game.minPlayers}} - {{game.maxPlayers}} Players
+            Age: {{game.minAge}}+
+            Rating: {{game.rating}}
+            <label>Categories:</label>
+            <mat-list *ngFor="let category of game.categories">
+              <mat-list-item>
+                {{category.name}}
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </mat-card-content>
+      </div>
+    </div>
+
+    <mat-divider class="py-3"></mat-divider>
+
+    <mat-card-actions class="d-flex justify-content-center">
+      <div class="mx-2">
+        <button mat-raised-button color="primary" class="button-w200" (click)="location.back()">Back</button>
+      </div>
+
+      <div *ngIf="!edit" class="mx-2">
+        <button mat-raised-button color="accent" class="button-w200" (click)="toggleEdit()">Edit</button>
+      </div>
+
+      <div *ngIf="edit" class="mx-2">
+        <button mat-raised-button color="accent" class="button-w200" (click)="updateInfo()">Save</button>
+      </div>
+
+      <div *ngIf="edit" class="mx-2">
+        <button mat-raised-button color="warn" class="button-w200" (click)="openDialog()">Delete</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-divider class="py-3"></mat-divider>
+
+  <mat-tab-group class="col-lg-12 mat-elevation-z2" color="primary">
+    <mat-tab label="reviews">
+      <div *ngIf="game.reviews.length == 0">
+        <p class="text-center py-2">There are no reviews!</p>
+      </div>
+      <div *ngIf="game.reviews.length != 0">
+        <mat-list role="list" *ngFor="let review of game.reviews">
+          <mat-card appearance="outlined">
+            <div class="row col-lg-10 p-2">
+              <mat-card-title class="col-lg-5">Billie</mat-card-title>
+              <mat-card-subtitle class="col-lg-5">{{review.createdAt | date}}</mat-card-subtitle>
+            </div>
+            <mat-card-content class="p-2">{{review.content}}</mat-card-content>
+          </mat-card>
+        </mat-list>
+      </div>
+    </mat-tab>
+    <mat-tab label="expansions">
+      <div *ngIf="game.expansions.length == 0">
+        <p class="text-center py-2">There are no expansions!</p>
+      </div>
+      <div *ngIf="game.expansions.length != 0">
+        <mat-list role="list" *ngFor="let expansion of game.expansions">
+          <app-expansion-info [expansion]="expansion"></app-expansion-info>
+        </mat-list>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

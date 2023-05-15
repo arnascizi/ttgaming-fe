@@ -1,0 +1,33 @@
+.games-table {
+  width: 100%;
+}
+
+.mat-column-position {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+}
+
+.mat-column-title img {
+  width: 95px;
+  height: 95px;
+  margin-right: 20px;
+}
+
+.mat-column-name {
+  padding-left: 16px;
+}
+
+.mat-cell-height {
+  height: 110px;
+}
+
+.mat-column-rating {
+  width: 32px;
+  text-align: center;
+}
+
+.games-table-size {
+  width: 600px;
+}

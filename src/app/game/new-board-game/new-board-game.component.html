@@ -1,0 +1,235 @@
+<div class="d-flex justify-content-center">
+  <mat-card appearance="raised"
+            class="mat-elevation-z2">
+    <mat-card-header>
+      <mat-card-title>Add new game</mat-card-title>
+    </mat-card-header>
+
+    <mat-divider class="py-3"></mat-divider>
+
+    <mat-card-content>
+      <form [formGroup]="gameForm"
+            (submit)="submitForm()"
+            class="game-form row">
+        <div class="col-lg-6">
+          <ng-container>
+            <mat-form-field appearance="outline"
+                            class="w-100">
+              <mat-label>Title</mat-label>
+              <input matInput
+                     type="text"
+                     formControlName="name"
+                     required>
+            </mat-form-field>
+          </ng-container>
+
+          <ng-container>
+            <mat-form-field appearance="outline"
+                            class="w-100">
+              <mat-label>Min players:</mat-label>
+              <input matInput
+                     type="number"
+                     formControlName="minPlayers">
+            </mat-form-field>
+          </ng-container>
+
+          <ng-container>
+            <mat-form-field appearance="outline"
+                            class="w-100">
+              <mat-label>Min age:</mat-label>
+              <input matInput
+                     type="number"
+                     formControlName="minAge">
+            </mat-form-field>
+          </ng-container>
+        </div>
+
+        <div class="col-lg-6">
+          <ng-container>
+            <mat-form-field appearance="outline"
+                            class="w-100">
+              <mat-label>Release year</mat-label>
+              <input matInput
+                     type="number"
+                     formControlName="releaseYear">
+            </mat-form-field>
+          </ng-container>
+
+          <ng-container>
+            <mat-form-field appearance="outline"
+                            class="w-100">
+              <mat-label>Max players:</mat-label>
+              <input matInput
+                     type="number"
+                     formControlName="maxPlayers">
+            </mat-form-field>
+          </ng-container>
+
+          <ng-container>
+            <mat-form-field appearance="outline"
+                            class="w-100">
+              <mat-label>Duration (minutes):</mat-label>
+              <input matInput
+                     type="text"
+                     formControlName="duration">
+            </mat-form-field>
+          </ng-container>
+        </div>
+
+        <ng-container>
+          <mat-form-field appearance="outline"
+                          class="w-100">
+            <mat-label>Description</mat-label>
+            <textarea matInput
+                      formControlName="description"
+                      rows="5"
+                      required>
+            </textarea>
+          </mat-form-field>
+        </ng-container>
+
+        <ng-container>
+          <mat-form-field appearance="outline"
+                          class="w-100">
+            <mat-label>Image link:</mat-label>
+            <input matInput
+                   type="text"
+                   formControlName="imgUrl"
+                   required
+                   maxlength="4000">
+          </mat-form-field>
+        </ng-container>
+
+        <div class="col-lg-10">
+          <ng-container>
+            <mat-form-field appearance="outline"
+                            class="w-100">
+              <mat-label>Designer:</mat-label>
+              <mat-select multiple
+                          formControlName="designers">
+                <mat-optgroup>
+                  <mat-form-field appearance="outline">
+                    <input matInput
+                           autocomplete="off"
+                           type="text"
+                           placeholder="Search"
+                           formControlName="designers">
+                  </mat-form-field>
+                  <mat-optgroup *ngIf="(designers).length == 0">
+                    <div>No results found!</div>
+                  </mat-optgroup>
+                </mat-optgroup>
+                <mat-divider class="py-3"></mat-divider>
+                <mat-option *ngFor="let designer of designers"
+                            [value]="designer">{{designer.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ng-container>
+        </div>
+
+        <div class="col-lg-2">
+          <ng-container>
+            <button mat-raised-button
+                    color="accent"
+                    class="py-4">Add designer
+            </button>
+          </ng-container>
+        </div>
+        <div class="col-lg-10">
+          <ng-container>
+            <mat-form-field appearance="outline"
+                            class="w-100">
+              <mat-label>Publisher:</mat-label>
+              <mat-select multiple
+                          formControlName="publishers">
+                <mat-option *ngFor="let publisher of publishers"
+                            [value]="publisher">{{publisher.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ng-container>
+        </div>
+
+        <div class="col-lg-2">
+          <ng-container>
+            <button mat-raised-button
+                    color="accent"
+                    class="py-4">Add publisher
+            </button>
+          </ng-container>
+        </div>
+
+        <div class="col-lg-10">
+          <ng-container>
+            <mat-form-field appearance="outline"
+                            class="w-100">
+              <mat-label>Categories:</mat-label>
+              <mat-select multiple
+                          formControlName="categories">
+                <mat-option *ngFor="let category of categories"
+                            [value]="category">{{category.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ng-container>
+        </div>
+
+        <div class="col-lg-2">
+          <ng-container>
+            <button mat-raised-button
+                    color="accent"
+                    class="py-4"
+                    (click)="newCategory()">Add category
+            </button>
+          </ng-container>
+        </div>
+
+        <div class="col-lg-10">
+          <ng-container>
+            <mat-form-field appearance="outline"
+                            class="w-100">
+              <mat-label>Mechanics:</mat-label>
+              <mat-select multiple
+                          formControlName="mechanics">
+                <mat-option *ngFor="let mechanic of mechanics"
+                            [value]="mechanic">{{mechanic.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ng-container>
+        </div>
+
+        <div class="col-lg-2">
+          <ng-container>
+            <button mat-raised-button
+                    color="accent"
+                    class="py-4">Add mechanic
+            </button>
+          </ng-container>
+        </div>
+      </form>
+    </mat-card-content>
+
+    <mat-divider class="py-3"></mat-divider>
+
+    <mat-card-actions class="d-flex justify-content-center">
+      <div class="mx-2">
+        <button mat-raised-button
+                color="warn"
+                class="button-w200"
+                (click)="location.back()">Cancel
+        </button>
+      </div>
+
+      <div class="mx-2">
+        <button mat-raised-button
+                type="submit"
+                class="button-w200"
+                color="primary"
+                (click)="submitForm()">Submit
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

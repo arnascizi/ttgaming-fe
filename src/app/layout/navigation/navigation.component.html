@@ -1,0 +1,46 @@
+<mat-toolbar color="primary" class="sticky-top mat-elevation-z2">
+  <mat-toolbar-row>
+    <span>TTGaming</span>
+    <span class="example-spacer"></span>
+    <button mat-button
+            class="example-icon"
+            [routerLink]="['/']"
+            routerLinkActive="active">Home
+    </button>
+    <button mat-button
+            class="example-icon"
+            [routerLink]="['/board/']"
+            routerLinkActive="active">Board games
+    </button>
+    <button *ngIf="true"
+            mat-button
+            class="example-icon"
+            [routerLink]="['/board/new']"
+            routerLinkActive="active">New board game
+    </button>
+    <span class="example-spacer"></span>
+    <button *ngIf="user"
+            mat-button
+            class="example-icon"
+            [routerLink]="['/user/']"
+            routerLinkActive="active">{{user.username}}
+    </button>
+    <button *ngIf="!user"
+            mat-button
+            class="example-icon"
+            [routerLink]="['/login/']"
+            routerLinkActive="active">Login
+    </button>
+    <button *ngIf="!user"
+            mat-button
+            class="example-icon"
+            [routerLink]="['/register']"
+            routerLinkActive="active">Register
+    </button>
+    <button *ngIf="user"
+            mat-button
+            class="example-icon"
+            (click)="logout()">Logout
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

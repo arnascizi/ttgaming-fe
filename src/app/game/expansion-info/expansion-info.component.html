@@ -1,0 +1,17 @@
+<mat-card appearance="outlined">
+  <mat-grid-list cols="4" rowHeight="5:1">
+    <mat-grid-tile rowspan="3" colspan="1">
+      <mat-card-header>
+        <img mat-card-lg-image src="{{expansion.imgUrl}}" alt="{{expansion.name}}">
+      </mat-card-header>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="3" colspan="3">
+      <mat-card-content>
+        <mat-card-title>
+          {{expansion.name}}  {{expansion.releaseDate}}
+        </mat-card-title>
+        {{expansion.description}}
+      </mat-card-content>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
