@@ -12,7 +12,7 @@
             [routerLink]="['/board/']"
             routerLinkActive="active">Board games
     </button>
-    <button *ngIf="true"
+    <button *ngIf="user"
             mat-button
             class="example-icon"
             [routerLink]="['/board/new']"
@@ -23,7 +23,8 @@
             mat-button
             class="example-icon"
             [routerLink]="['/user/']"
-            routerLinkActive="active">{{user.username}}
+            routerLinkActive="active"
+            [ngModel]="user">{{user.username}}
     </button>
     <button *ngIf="!user"
             mat-button

@@ -20,6 +20,7 @@ export enum EndpointEnum {
   // user
   USER_LOGIN = '/api/users/login',
   USER_REGISTER = '/api/users/register',
-  USER_SIGNOUT = '/api/users/signout'
+  USER_SIGNOUT = '/api/users/signout',
+  USER_UPDATE = '/api/users/update'
 
 }

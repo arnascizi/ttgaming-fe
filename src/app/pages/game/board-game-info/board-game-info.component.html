@@ -1,4 +1,4 @@
-<div class="f-flex justify-content-center">
+<div class="justify-content-center">
   <mat-card appearance="raised" class="mat-elevation-z2">
     <div class="row">
       <div class="col-lg-4">
@@ -47,9 +47,7 @@
     <mat-divider class="py-3"></mat-divider>
 
     <mat-card-actions class="d-flex justify-content-center">
-      <div class="mx-2">
-        <button mat-raised-button color="primary" class="button-w200" (click)="location.back()">Back</button>
-      </div>
+
 
       <div *ngIf="!edit" class="mx-2">
         <button mat-raised-button color="accent" class="button-w200" (click)="toggleEdit()">Edit</button>
@@ -68,7 +66,7 @@
   <mat-divider class="py-3"></mat-divider>
 
   <mat-tab-group class="col-lg-12 mat-elevation-z2" color="primary">
-    <mat-tab label="reviews">
+    <mat-tab label="Reviews">
       <div *ngIf="game.reviews.length == 0">
         <p class="text-center py-2">There are no reviews!</p>
       </div>
@@ -84,7 +82,7 @@
         </mat-list>
       </div>
     </mat-tab>
-    <mat-tab label="expansions">
+    <mat-tab label="Expansions">
       <div *ngIf="game.expansions.length == 0">
         <p class="text-center py-2">There are no expansions!</p>
       </div>

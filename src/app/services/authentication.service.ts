@@ -30,7 +30,6 @@ export class AuthenticationService {
   login(auth: AuthBody) {
     return this.httpClient.post<UserDetails>(EndpointEnum.USER_LOGIN, auth)
       .pipe(map(user => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
         this.userSubject.next(user);
         return user;
@@ -48,6 +47,9 @@ export class AuthenticationService {
     return this.httpClient.post(EndpointEnum.USER_REGISTER, user);
   }
 
+  update(user: UserDetails) {
+    return this.httpClient.post(EndpointEnum.USER_UPDATE, user);
+  }
   // getAll() {
   //   return this.http.get<User[]>(`${environment.apiUrl}/users`);
   // }

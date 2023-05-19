@@ -9,11 +9,10 @@ import {Publisher} from "../../../interfaces/publisher";
 import {Category} from "../../../interfaces/category";
 import {Mechanic} from "../../../interfaces/mechanic";
 import {MechanicService} from "../../../services/mechanic.service";
-import {map, startWith, take, tap} from "rxjs";
+import {take, tap} from "rxjs";
 import {DesignerService} from "../../../services/designer.service";
 import {Designer} from "../../../interfaces/designer";
 import {Router} from "@angular/router";
-import {ConfirmationDialogComponent} from "../../../components/confirmation-dialog/confirmation-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {ItemComponent} from "../../../components/item/item.component";
 
