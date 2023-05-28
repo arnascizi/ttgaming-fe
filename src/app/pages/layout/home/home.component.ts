@@ -11,21 +11,10 @@ import {Search} from "../../../interfaces/search";
 })
 export class HomeComponent implements OnInit{
   games!: BoardGamePreview[];
-  search!: Search<BoardGamePreview>;
 
   constructor(private gameService: GameService) {
   }
 
   ngOnInit(): void {
-    this.gameService
-      .getAllGames()
-      .pipe(
-        take(1),
-        tap((games) => {
-          this.games = games;
-        })
-      )
-      .subscribe();
   }
-
 }

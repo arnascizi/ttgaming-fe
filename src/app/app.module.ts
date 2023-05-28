@@ -44,6 +44,10 @@ import {UserMenuComponent} from './pages/user/user-menu/user-menu.component';
 import {JwtInterceptor} from "./shared/helper/jwt.interceptor";
 import {ErrorInterceptor} from "./shared/helper/error.interceptor";
 import {AlertComponent} from './components/alert/alert.component';
+import {ReviewInfoComponent} from './pages/reviews/review-info/review-info.component';
+import { TopGameComponent } from './pages/game/top-game/top-game.component';
+import { AddReviewComponent } from './pages/reviews/add-review/add-review.component';
+import {MatSliderModule} from "@angular/material/slider";
 
 
 @NgModule({
@@ -64,7 +68,10 @@ import {AlertComponent} from './components/alert/alert.component';
     SideBarComponent,
     ItemComponent,
     UserMenuComponent,
-    AlertComponent
+    AlertComponent,
+    ReviewInfoComponent,
+    TopGameComponent,
+    AddReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -95,6 +102,8 @@ import {AlertComponent} from './components/alert/alert.component';
     MatRippleModule,
     MatSnackBarModule,
     MatChipsModule,
+    MatSliderModule,
+    // TODO i18n translations
     // TranslateModule.forRoot({
     //   loader: {
     //     provide: TranslateLoader,

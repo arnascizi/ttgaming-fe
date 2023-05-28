@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BoardGame} from "../../../interfaces/board-game";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {GameService} from "../../../services/game.service";
 import {Location} from "@angular/common";
 import {PublisherService} from "../../../services/publisher.service";
@@ -15,6 +15,7 @@ import {Designer} from "../../../interfaces/designer";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {ItemComponent} from "../../../components/item/item.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-new-board-game',
@@ -43,24 +44,25 @@ export class NewBoardGameComponent implements OnInit{
               private dialog: MatDialog,
               private router: Router,
               public location: Location,
+              private snackBar: MatSnackBar,
               private fb: FormBuilder) {
   }
   ngOnInit(): void {
     this.init();
 
     this.gameForm = this.fb.group({
-      name: [],
-      releaseYear: [],
-      description: [],
-      minPlayers: [],
-      maxPlayers: [],
-      minAge: [],
-      duration: [],
-      imgUrl: [],
-      mechanics: [],
-      designers: [],
-      categories: [],
-      publishers: []
+      name: ['', Validators.required],
+      releaseYear: [''],
+      description: [''],
+      minPlayers: ['', Validators.min(1)],
+      maxPlayers: ['', Validators.max(8)],
+      minAge: ['', Validators.min(5)],
+      duration: [''],
+      imgUrl: [''],
+      mechanics: ['', Validators.required],
+      designers: [''],
+      categories: ['', Validators.required],
+      publishers: ['']
     });
   }
 
@@ -89,7 +91,7 @@ export class NewBoardGameComponent implements OnInit{
       )
       .subscribe(
         res => {
-          alert("Game added!")
+          this.snackBar.open('Game added!', 'ok');
           this.router.navigateByUrl(`/board`);
         }
       );

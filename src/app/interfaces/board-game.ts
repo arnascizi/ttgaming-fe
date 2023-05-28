@@ -2,6 +2,8 @@ import {Expansion} from "./expansion";
 import {Review} from "./review";
 import {Category} from "./category";
 import {Designer} from "./designer";
+import {Publisher} from "./publisher";
+import {Mechanic} from "./mechanic";
 
 export interface BoardGame {
   id: number;
@@ -18,4 +20,6 @@ export interface BoardGame {
   reviews: Review[];
   categories: Category[];
   designers: Designer[];
+  publishers: Publisher[];
+  mechanics: Mechanic[];
 }

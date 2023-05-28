@@ -20,10 +20,10 @@
               <input matInput
                      type="text"
                      formControlName="username"
-                     [ngClass]="{ 'is-invalid': submitted && form.value.username.errors}" />
-              <div *ngIf="submitted && form.value.username.errors"
+                     [ngClass]="{ 'is-invalid': submitted && formControls['username'].errors}" />
+              <div *ngIf="submitted && formControls['username'].errors"
                    class="invalid-feedback">
-                <div *ngIf="form.value.username.errors.required">Username is required</div>
+                <div *ngIf="formControls['username'].errors">Username is required</div>
               </div>
             </mat-form-field>
           </ng-container>
@@ -37,10 +37,10 @@
               <input matInput
                      type="password"
                      formControlName="password"
-                     [ngClass]="{ 'is-invalid': submitted && form.value.password.errors}" />
-              <div *ngIf="submitted && form.value.password.errors"
+                     [ngClass]="{ 'is-invalid': submitted && formControls['password'].errors}" />
+              <div *ngIf="submitted && formControls['password'].errors"
                    class="invalid-feedback">
-                <div *ngIf="form.value.password.errors.required">Password is required</div>
+                <div *ngIf="formControls['password'].errors">Password is required</div>
               </div>
             </mat-form-field>
           </ng-container>

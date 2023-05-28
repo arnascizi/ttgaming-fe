@@ -14,11 +14,16 @@
         <div class="col-lg-6 mx-3">
           <ng-container>
             <mat-form-field class="w-100"
-                            appearance="outline" >
+                            appearance="outline">
               <mat-label>Email</mat-label>
-                <input matInput
-                       formControlName="email"
-                       type="text">
+              <input matInput
+                     formControlName="email"
+                     type="text"
+                     [ngClass]="{ 'is-invalid': submitted && formControls['email'].errors}"/>
+              <div *ngIf="submitted && formControls['email'].errors"
+                   class="invalid-feedback">
+                <div *ngIf="formControls['email'].errors">Email is required</div>
+              </div>
             </mat-form-field>
           </ng-container>
         </div>
@@ -26,11 +31,16 @@
         <div class="col-lg-6 mx-3">
           <ng-container>
             <mat-form-field class="w-100"
-                            appearance="outline" >
+                            appearance="outline">
               <mat-label>Username</mat-label>
-                <input matInput
-                       formControlName="username"
-                       type="text">
+              <input matInput
+                     formControlName="username"
+                     type="text"
+                     [ngClass]="{ 'is-invalid': submitted && formControls['username'].errors}"/>
+              <div *ngIf="submitted && formControls['username'].errors"
+                   class="invalid-feedback">
+                <div *ngIf="formControls['username'].errors">Username is required</div>
+              </div>
             </mat-form-field>
           </ng-container>
         </div>
@@ -38,11 +48,21 @@
         <div class="col-lg-6 mx-3">
           <ng-container>
             <mat-form-field class="w-100"
-                            appearance="outline" >
+                            appearance="outline">
               <mat-label>Password</mat-label>
-                <input matInput
-                       formControlName="password"
-                       type="password">
+              <input matInput
+                     formControlName="password"
+                     type="password"
+                     [ngClass]="{ 'is-invalid': submitted && formControls['password'].errors}"/>
+              <div *ngIf="submitted && formControls['password'].errors"
+                   class="invalid-feedback">
+                <div *ngIf="formControls['password'].errors">Password is required</div>
+              </div>
+<!--              TODO length validation-->
+<!--              <div *ngIf="submitted && formControls['password'].errors."-->
+<!--                   class="invalid-feedback">-->
+<!--                <div *ngIf="formControls['password'].errors">Password length no shorter than 8 symbols</div>-->
+<!--              </div>-->
             </mat-form-field>
           </ng-container>
         </div>

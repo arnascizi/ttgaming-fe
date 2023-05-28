@@ -3,6 +3,9 @@ export enum EndpointEnum {
   GAMES = '/api/games',
   NEW_GAMES = '/api/games/new',
   GAME = '/api/games/',
+  GAME_PAGE = '/api/games/page',
+  SEARCH = '/api/games/search',
+  TOP_GAMES = '/api/games/top-games',
 
   // expansions
   GAME_EXPANSIONS = '/api/expansions/',
@@ -14,13 +17,14 @@ export enum EndpointEnum {
   // mechanics
   MECHANICS = '/api/mechanics',
   // reviews
-  REVIEWS = '/api/reviews',
+  REVIEW = '/api/review',
   // designers
   DESIGNERS = '/api/designers',
   // user
   USER_LOGIN = '/api/users/login',
   USER_REGISTER = '/api/users/register',
   USER_SIGNOUT = '/api/users/signout',
-  USER_UPDATE = '/api/users/update'
+  USER_UPDATE = '/api/users/update',
+
 
 }

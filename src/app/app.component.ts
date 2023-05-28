@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {BoardGamePreview} from "./interfaces/board-game-preview";
+import {GameService} from "./services/game.service";
+import {take, tap} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -8,10 +11,20 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class AppComponent implements OnInit {
   title = 'ttgaming-fe';
+  topGames!: BoardGamePreview[];
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private gameService: GameService) {
   }
 
   ngOnInit(): void {
+    this.gameService
+      .getTopGames()
+      .pipe(
+        take(1),
+        tap((games) => {
+          this.topGames = games;
+        })
+      )
+      .subscribe();
   }
 }

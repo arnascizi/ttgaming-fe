@@ -1,0 +1,13 @@
+<mat-card appearance="raised" class="border-top px-3">
+  <div class="p-2">
+    <mat-card-title class="col-lg-4">{{review.user.username}}
+      <span class="float-end" >
+        {{review.rating}}
+        <mat-icon class="py-1" color="accent">star</mat-icon>
+      </span>
+    </mat-card-title>
+    <mat-card-subtitle class="col-lg-12">{{review.createdAt | date:'medium'}}</mat-card-subtitle>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-card-content class="p-2">-- {{review.content}}</mat-card-content>
+</mat-card>

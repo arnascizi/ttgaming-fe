@@ -6,6 +6,8 @@ import {EndpointEnum} from "../enums/endpoint.enum";
 import {ErrorHandlerComponent} from "../components/error-handler/error-handler.component";
 import {BoardGame} from "../interfaces/board-game";
 import {Search} from "../interfaces/search";
+import {GameSearch} from "../interfaces/game-search";
+import {PageableSearch} from "../interfaces/pageable-search";
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +17,8 @@ export class GameService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAllGames(): Observable<BoardGamePreview[]> {
-    return this.httpClient.get<BoardGamePreview[]>(EndpointEnum.GAMES)
+  findGames(search: PageableSearch): Observable<BoardGamePreview[]> {
+    return this.httpClient.post<BoardGamePreview[]>(EndpointEnum.SEARCH, search)
       .pipe(
         retry(3),
         catchError(ErrorHandlerComponent.handleError)
@@ -32,7 +34,6 @@ export class GameService {
   }
 
   addNewGame(game: BoardGame): Observable<BoardGame> {
-    console.log(game);
     return this.httpClient.post<BoardGame>(EndpointEnum.NEW_GAMES, game)
       .pipe(
         retry(3),
@@ -48,5 +49,11 @@ export class GameService {
       );
   }
 
-
+  getTopGames(): Observable<BoardGamePreview[]> {
+    return this.httpClient.get<BoardGamePreview[]>(EndpointEnum.TOP_GAMES)
+      .pipe(
+        retry(3),
+        catchError(ErrorHandlerComponent.handleError)
+      );
+  }
 }

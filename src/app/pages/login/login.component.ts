@@ -5,7 +5,6 @@ import {AuthenticationService} from "../../services/authentication.service";
 import {first} from "rxjs";
 import {AuthBody} from "../../interfaces/auth-body";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {AlertService} from "../../services/alert.service";
 
 @Component({
   selector: 'app-login',
@@ -26,7 +25,6 @@ export class LoginComponent implements OnInit {
     private authService: AuthenticationService,
     private snackBar: MatSnackBar,
     // private accountService: AccountService,
-    // private alertService: AlertService
   ) {
   }
 
@@ -35,15 +33,12 @@ export class LoginComponent implements OnInit {
   }
 
   // convenience getter for easy access to form fields
-  get f() {
+  get formControls() {
     return this.form.controls;
   }
 
   onSubmit(): void {
     this.submitted = true;
-
-    // reset alerts on submit
-    // this.alertService.clear();
 
     // stop here if form is invalid
     if (this.form.invalid) {

@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center">
+<div class="justify-content-center">
   <mat-card appearance="raised"
             class="mat-elevation-z2">
     <mat-card-header>
@@ -19,7 +19,11 @@
               <input matInput
                      type="text"
                      formControlName="name"
-                     required>
+                     [ngClass]="{ 'is-invalid': isSubmitted && formControls['name'].errors}"/>
+              <div *ngIf="isSubmitted && formControls['name'].errors"
+                   class="invalid-feedback">
+                <div *ngIf="formControls['name'].errors">Title is required</div>
+              </div>
             </mat-form-field>
           </ng-container>
 
@@ -29,7 +33,12 @@
               <mat-label>Min players:</mat-label>
               <input matInput
                      type="number"
-                     formControlName="minPlayers">
+                     formControlName="minPlayers"
+                     [ngClass]="{ 'is-invalid': isSubmitted && formControls['minPlayers'].errors}"/>
+              <div *ngIf="isSubmitted && formControls['minPlayers'].errors"
+                   class="invalid-feedback">
+                <div *ngIf="formControls['minPlayers'].errors">Minimum players cannot be lower than 1</div>
+              </div>
             </mat-form-field>
           </ng-container>
 
@@ -39,7 +48,12 @@
               <mat-label>Min age:</mat-label>
               <input matInput
                      type="number"
-                     formControlName="minAge">
+                     formControlName="minAge"
+                     [ngClass]="{ 'is-invalid': isSubmitted && formControls['minAge'].errors}"/>
+              <div *ngIf="isSubmitted && formControls['minAge'].errors"
+                   class="invalid-feedback">
+                <div *ngIf="formControls['minAge'].errors">Player cannot be younger than 5 years old.</div>
+              </div>
             </mat-form-field>
           </ng-container>
         </div>
@@ -61,7 +75,12 @@
               <mat-label>Max players:</mat-label>
               <input matInput
                      type="number"
-                     formControlName="maxPlayers">
+                     formControlName="maxPlayers"
+                     [ngClass]="{ 'is-invalid': isSubmitted && formControls['maxPlayers'].errors}"/>
+              <div *ngIf="isSubmitted && formControls['maxPlayers'].errors"
+                   class="invalid-feedback">
+                <div *ngIf="formControls['maxPlayers'].errors">Maximum player count cannot be higher than 8</div>
+              </div>
             </mat-form-field>
           </ng-container>
 
@@ -82,8 +101,7 @@
             <mat-label>Description</mat-label>
             <textarea matInput
                       formControlName="description"
-                      rows="5"
-                      required>
+                      rows="5">
             </textarea>
           </mat-form-field>
         </ng-container>
@@ -95,7 +113,6 @@
             <input matInput
                    type="text"
                    formControlName="imgUrl"
-                   required
                    maxlength="4000">
           </mat-form-field>
         </ng-container>
@@ -115,9 +132,9 @@
                            placeholder="Search"
                            formControlName="designers">
                   </mat-form-field>
-                  <mat-optgroup *ngIf="(designers).length == 0">
-                    <div>No results found!</div>
-                  </mat-optgroup>
+<!--                  <mat-optgroup *ngIf="(designers).length == 0">-->
+<!--                    <div>No results found!</div>-->
+<!--                  </mat-optgroup>-->
                 </mat-optgroup>
                 <mat-divider class="py-3"></mat-divider>
                 <mat-option *ngFor="let designer of designers"
@@ -165,8 +182,13 @@
             <mat-form-field appearance="outline"
                             class="w-100">
               <mat-label>Categories:</mat-label>
+              <div *ngIf="isSubmitted && formControls['categories'].errors"
+                   class="invalid-feedback">
+                <div *ngIf="formControls['categories'].errors">Atleast 1 category must be picked!</div>
+              </div>
               <mat-select multiple
-                          formControlName="categories">
+                          formControlName="categories"
+                          [ngClass]="{ 'is-invalid': isSubmitted && formControls['categories'].errors}">
                 <mat-option *ngFor="let category of categories"
                             [value]="category">{{category.name}}
                 </mat-option>
@@ -191,7 +213,12 @@
                             class="w-100">
               <mat-label>Mechanics:</mat-label>
               <mat-select multiple
-                          formControlName="mechanics">
+                          formControlName="mechanics"
+                          [ngClass]="{ 'is-invalid': isSubmitted && formControls['mechanics'].errors}">
+                <div *ngIf="isSubmitted && formControls['mechanics'].errors"
+                     class="invalid-feedback">
+                  <div *ngIf="formControls['mechanics'].errors">Atleast 1 mechanic must be picked!</div>
+                </div>
                 <mat-option *ngFor="let mechanic of mechanics"
                             [value]="mechanic">{{mechanic.name}}
                 </mat-option>

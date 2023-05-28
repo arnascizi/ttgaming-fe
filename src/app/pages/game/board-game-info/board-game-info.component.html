@@ -28,27 +28,65 @@
               <p class="card-text py-3">{{game.description}}</p>
             </div>
             <mat-card-content>
-              Playing time: {{game.duration}} Min.
+              <div class="justify-content-between">
+                <div class="row">
+                  <div class="my-2 col-lg-6">
+                    <button mat-flat-button color="primary"><mat-icon>access_time</mat-icon>Playing time: {{game.duration}} Min.</button>
+                  </div>
+                  <div class="my-2 col-lg-6">
+                    <button mat-flat-button color="primary"><mat-icon>person_outline</mat-icon>{{game.minPlayers}} - {{game.maxPlayers}} Players</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="my-2 col-lg-6">
+                    <button mat-flat-button color="primary"><mat-icon>cake</mat-icon>Age: {{game.minAge}}+</button>
+                  </div>
+                  <div class="my-2 col-lg-6">
+                    <button mat-flat-button color="primary">Rating: {{game.rating}}<mat-icon color="accent">star</mat-icon></button>
+                  </div>
+                </div>
+              </div>
+              <mat-divider class="py-2"></mat-divider>
+              <mat-label>Mechanics:</mat-label>
+              <mat-chip-grid>
+                <mat-chip-listbox *ngFor="let mechanic of game.mechanics">
+                  <mat-chip-option selectable="false"
+                                   class="mx-2">{{mechanic.name}}</mat-chip-option>
+                </mat-chip-listbox>
+              </mat-chip-grid>
+              <mat-divider class="py-2"></mat-divider>
+              <mat-label>Categories:</mat-label>
+              <mat-chip-grid>
+                <mat-chip-listbox *ngFor="let category of game.categories">
+                  <mat-chip-option selectable="false"
+                                   class="mx-2">{{category.name}}</mat-chip-option>
+                </mat-chip-listbox>
+              </mat-chip-grid>
+              <mat-divider class="py-2"></mat-divider>
+              <mat-label>Designers:</mat-label>
+              <mat-chip-grid>
+                <mat-chip-listbox *ngFor="let designer of game.designers">
+                  <mat-chip-option selectable="false"
+                                   class="mx-2">{{designer.name}}</mat-chip-option>
+                </mat-chip-listbox>
+              </mat-chip-grid>
+              <mat-divider class="py-2"></mat-divider>
+              <mat-label>Publishers:</mat-label>
+              <mat-chip-grid>
+                <mat-chip-listbox *ngFor="let publisher of game.publishers">
+                  <mat-chip-option selectable="false"
+                                   class="mx-2">{{publisher.name}}</mat-chip-option>
+                </mat-chip-listbox>
+              </mat-chip-grid>
             </mat-card-content>
-            {{game.minPlayers}} - {{game.maxPlayers}} Players
-            Age: {{game.minAge}}+
-            Rating: {{game.rating}}
-            <label>Categories:</label>
-            <mat-list *ngFor="let category of game.categories">
-              <mat-list-item>
-                {{category.name}}
-              </mat-list-item>
-            </mat-list>
           </div>
         </mat-card-content>
       </div>
     </div>
 
-    <mat-divider class="py-3"></mat-divider>
+    <mat-divider class="pt-3"></mat-divider>
 
     <mat-card-actions class="d-flex justify-content-center">
-
-
       <div *ngIf="!edit" class="mx-2">
         <button mat-raised-button color="accent" class="button-w200" (click)="toggleEdit()">Edit</button>
       </div>
@@ -72,15 +110,24 @@
       </div>
       <div *ngIf="game.reviews.length != 0">
         <mat-list role="list" *ngFor="let review of game.reviews">
-          <mat-card appearance="outlined">
-            <div class="row col-lg-10 p-2">
-              <mat-card-title class="col-lg-5">Billie</mat-card-title>
-              <mat-card-subtitle class="col-lg-5">{{review.createdAt | date}}</mat-card-subtitle>
-            </div>
-            <mat-card-content class="p-2">{{review.content}}</mat-card-content>
-          </mat-card>
+          <app-review-info [review]="review"></app-review-info>
+          <mat-divider></mat-divider>
         </mat-list>
       </div>
+      <mat-card-content>
+        <div *ngIf="addNewReview">
+          <app-add-review [gameId]="game.id"
+                          [username]="user?.username"
+                          [userEmail]="user?.email"
+                          [openReview]="addNewReview"
+                          (closeReview)="doAddNewReview()"></app-add-review>
+        </div>
+        <div *ngIf="!addNewReview && user" class="d-flex justify-content-center">
+          <div *ngIf="!edit" class="mx-2">
+            <button mat-raised-button color="accent" class="button-w200" (click)="doAddNewReview()">Add review</button>
+          </div>
+        </div>
+      </mat-card-content>
     </mat-tab>
     <mat-tab label="Expansions">
       <div *ngIf="game.expansions.length == 0">
@@ -89,6 +136,7 @@
       <div *ngIf="game.expansions.length != 0">
         <mat-list role="list" *ngFor="let expansion of game.expansions">
           <app-expansion-info [expansion]="expansion"></app-expansion-info>
+          <mat-divider></mat-divider>
         </mat-list>
       </div>
     </mat-tab>

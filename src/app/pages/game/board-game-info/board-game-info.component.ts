@@ -4,10 +4,13 @@ import {take, tap} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BoardGame} from "../../../interfaces/board-game";
 import {ExpansionService} from "../../../services/expansion.service";
-import {Location} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationDialogComponent} from "../../../components/confirmation-dialog/confirmation-dialog.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {ReviewService} from "../../../services/review.service";
+import {ReviewRequest} from "../../../interfaces/review-request";
+import {AuthenticationService} from "../../../services/authentication.service";
+import {UserDetails} from "../../../interfaces/user-details";
 
 @Component({
   selector: 'app-board-game-info',
@@ -19,16 +22,23 @@ export class BoardGameInfoComponent implements OnInit {
   @Input() edit: boolean = false;
   @Input() expansions: boolean = false;
   @Input() reviews: boolean = true;
+  review!: ReviewRequest;
+  addNewReview: boolean = false;
+  loggedUser!: string | undefined;
+  email!: string | undefined;
+  user?: UserDetails | null;
 
   constructor(
-    public location: Location,
+    public auth: AuthenticationService,
     public dialog: MatDialog,
     private gameService: GameService,
     private expansionService: ExpansionService,
     private router: Router,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private reviewService: ReviewService
   ) {
+    this.auth.user.subscribe(u => this.user = u);
   }
 
   ngOnInit() {
@@ -43,6 +53,14 @@ export class BoardGameInfoComponent implements OnInit {
         })
       )
       .subscribe();
+
+    this.auth.userValue.pipe(
+      take(1),
+      tap((user) => {
+          this.loggedUser = user?.username;
+          this.email = user?.email;
+      })
+    ).subscribe();
   }
 
   private getBoardGame(id: number) {
@@ -90,5 +108,22 @@ export class BoardGameInfoComponent implements OnInit {
         this.snackBar.open('Successfully deleted!', 'ok');
       }
     });
+  }
+
+  postReview() {
+    // this.review.loggedUser = this.auth.userValue;
+    // TODO reviews
+    this.reviewService.postReview(this.review)
+      .pipe(
+        take(1)
+      )
+      .subscribe( Review => {
+          this.snackBar.open('Review posted!', 'ok');
+        }
+      );
+  }
+
+  doAddNewReview() {
+    this.addNewReview = !this.addNewReview;
   }
 }
