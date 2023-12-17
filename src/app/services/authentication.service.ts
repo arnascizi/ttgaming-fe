@@ -7,6 +7,7 @@ import {ErrorHandlerComponent} from "../components/error-handler/error-handler.c
 import {UserDetails} from "../interfaces/user-details";
 import {Router} from "@angular/router";
 import {User} from "../interfaces/user";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'

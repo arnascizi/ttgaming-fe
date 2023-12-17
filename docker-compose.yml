@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: ttgaming-db
+    extends:
+      file: ../ttgaming-be/docker-compose.yml
+      service: postgres
+
+  backend:
+    container_name: ttgaming-api
+    extends:
+      file: ../ttgaming-be/docker-compose.yml
+      service: backend
+    ports:
+      - "9292:9292"
+
+  nginx:
+    container_name: ttgaming-nginx
+    image: nginx:stable-alpine
+    expose:
+      - "80"
+    depends_on:
+      - backend
+
+  frontend:
+    container_name: ttgaming-app
+    ports:
+      - "4200:4200"
+    build:
+      dockerfile: dockerfile
+    depends_on:
+      - backend
+
+volumes:
+  postgres-data:

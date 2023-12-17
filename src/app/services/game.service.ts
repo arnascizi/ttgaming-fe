@@ -8,6 +8,7 @@ import {BoardGame} from "../interfaces/board-game";
 import {Search} from "../interfaces/search";
 import {GameSearch} from "../interfaces/game-search";
 import {PageableSearch} from "../interfaces/pageable-search";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
